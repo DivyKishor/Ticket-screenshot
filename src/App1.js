@@ -48,8 +48,8 @@ function App() {
             {/* screenshot section */}
             <div className="modal-header">
               <IoMdArrowBack />
-              <h3>Screenshot  Based Ticket</h3>
-              <div>Please use button below to mask any PII information in the screenshot</div>
+              <div className="modal-heading">Screenshot  Based Ticket</div>
+              <div className="modal-subtext">Please use button below to mask any PII information in the screenshot</div>
             </div>
           </div>
           <div>

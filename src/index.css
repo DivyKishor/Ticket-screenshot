@@ -119,4 +119,16 @@ code {
 .modal-header{
   display: flex;
   flex-direction: row;
+  border-bottom: 2px solid black;
+}
+
+.modal-heading{
+  font-size: 16px;
+  font-weight: 800;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.modal-subtext{
+  font-size: 12px;
 }
