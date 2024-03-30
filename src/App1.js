@@ -3,7 +3,7 @@ import "./App.css";
 import { IoChatboxEllipses } from "react-icons/io5";
 import { IoMdArrowBack } from "react-icons/io";
 import { ScreenCapture } from "react-screen-capture";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import ReportIssue from './ReportIssue';
@@ -15,6 +15,11 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [issueShow, setIssueShow] = useState(false);
   const [CustomAreaShow, setCustomAreaShow] = useState(false);
+  const [obj,setObj] = useState({})
+
+  useEffect(() => {
+    setObj(screenCapture);
+  },[screenCapture])
 
   const onOpenModal = () => setModalOpen(true);
   const onCloseModal = () => setModalOpen(false);
@@ -27,19 +32,23 @@ function App() {
 
   const handleScreenCapture = (screenCapture) => {
     setScreenCapture({ screenCapture });
+    setObj(screenCapture);
     onOpenModal();
   };
 
   const handleSave = () => {
-    const screenCaptureSource = screenCapture;
+    const screenCaptureSource = screenCapture
+    setObj(screenCapture);
+    console.log(screenCaptureSource.screenCapture)
     const downloadLink = document.createElement("a");
     const fileName = "react-screen-capture.png";
 
     downloadLink.href = screenCaptureSource;
     downloadLink.download = fileName;
-    downloadLink.click();
+    console.log(downloadLink);
+    // downloadLink.click();
   };
-
+console.log(obj)
   return (
     <div>
       <Modal open={modalOpen} onClose={onCloseModal} center>
@@ -57,7 +66,7 @@ function App() {
           </div>
         </div>
         <center>
-          <img src={screenCapture} alt="react-screen-capture" />
+          <img src={obj.screenCapture} alt="react-screen-capture" />
           <p>
             {screenCapture && <button onClick={handleSave}>Download</button>}
           </p>
