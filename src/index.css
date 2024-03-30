@@ -11,6 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.screenShotMenus{
+  text-align: center;
+  display: flex;
+  justify-content: center; /* Horizontally center align */
+  align-items: center; /* Vertically center align */
+  height: 100vh;
+}
+
+.react-responsive-modal-closeButton{
+  display: none;
+}
 
 .icon-box{
   background-color: aqua;
@@ -22,6 +33,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .icon-div{
@@ -56,6 +68,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .report-issue-heading{
@@ -86,16 +99,28 @@ code {
   color: white;
   border: 0px;
   font-size: 10px;
+  cursor: pointer;
 }
 
 .custom-area-div{
   position: fixed;
   bottom:5px;
-  right: 100vh;
-  width: 230px;
+  /* right: 100vh; */
+  width: 235px;
   background-color: #121114;
   padding: 5px;
   border-radius: 5px;
+}
+
+.save-div{
+  position: fixed;
+  bottom:5px;
+  /* right: 100vh; */
+  width: 145px;
+  background-color: #121114;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 10;
 }
 
 .btn{
@@ -105,15 +130,22 @@ code {
   border: 0px;
   padding: 5px;
   margin: 2px;
+  cursor: pointer;
+  margin-left: 10px;
 }
 
 .cancel-btn{
-  margin-left: 20px;
+  margin-left: 10px;
   background-color: #8a0815;
   color: white;
   border-radius: 5px;
   border: 0px;
   padding: 5px 10px;
+  cursor: pointer;
+}
+
+.save-btn{
+  background-color: green;
 }
 
 .modal-header{
@@ -131,4 +163,26 @@ code {
 
 .modal-subtext{
   font-size: 12px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  z-index: 10;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 10px;
+}
+
+.centered-div {
+  text-align: center;
 }

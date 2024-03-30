@@ -4,42 +4,81 @@ import { IoChatboxEllipses } from "react-icons/io5";
 import { IoMdArrowBack } from "react-icons/io";
 import { ScreenCapture } from "react-screen-capture";
 import { useState, useEffect } from "react";
-import 'react-responsive-modal/styles.css';
-import { Modal } from 'react-responsive-modal';
-import ReportIssue from './ReportIssue';
+import "react-responsive-modal/styles.css";
+import { Modal } from "react-responsive-modal";
+import ReportIssue from "./ReportIssue";
 import CustomArea from "./CustomArea";
+import Save from "./Save";
 
 function App() {
   const [screenCapture, setScreenCapture] = useState("");
   const [showChatIcon, setShowChatIcon] = useState(true);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modal1Open, setModal1Open] = useState(false);
+  const [modal2Open, setModal2Open] = useState(false);
   const [issueShow, setIssueShow] = useState(false);
   const [CustomAreaShow, setCustomAreaShow] = useState(false);
-  const [obj,setObj] = useState({})
+  const [saveShow, setSaveShow] = useState(false);
+  const [obj, setObj] = useState({});
 
   useEffect(() => {
     setObj(screenCapture);
-  },[screenCapture])
+  }, [screenCapture]);
 
-  const onOpenModal = () => setModalOpen(true);
-  const onCloseModal = () => setModalOpen(false);
+  const onOpenModal1 = () => setModal1Open(true);
+  const onCloseModal1 = () => setModal1Open(false);
 
-  const showCustomArea = () => {setCustomAreaShow(true); setIssueShow(false); setShowChatIcon(false)}
-  const hideCustomArea = () => {setCustomAreaShow(false); setShowChatIcon(true);}
+  const onOpenModal2 = () => {
+    setModal2Open(true);
+    setModal1Open(false);
+  };
+  const onCloseModal2 = () => {
+    setModal2Open(false);
+    setShowChatIcon(true);
+  };
 
-  const showReportIssue = () => {setIssueShow(true); setShowChatIcon(false)}
-  const hideReportIssue = () => {setIssueShow(false); setShowChatIcon(true);}
+  const showSave = () => {
+    setSaveShow(true);
+    setCustomAreaShow(false);
+    setIssueShow(false);
+    setShowChatIcon(false);
+  };
+  const hideSave = () => {
+    setSaveShow(false);
+    setShowChatIcon(true);
+  };
+
+  const showCustomArea = () => {
+    setCustomAreaShow(true);
+    setIssueShow(false);
+    setShowChatIcon(false);
+  };
+  const hideCustomArea = () => {
+    setCustomAreaShow(false);
+    setShowChatIcon(true);
+  };
+
+  const showReportIssue = () => {
+    setIssueShow(true);
+    setShowChatIcon(false);
+  };
+  const hideReportIssue = () => {
+    setIssueShow(false);
+    setShowChatIcon(true);
+  };
 
   const handleScreenCapture = (screenCapture) => {
+    console.log(saveShow, "saveShow");
+    showSave();
+    console.log(saveShow, "after showSave");
     setScreenCapture({ screenCapture });
     setObj(screenCapture);
-    onOpenModal();
+    onOpenModal1();
   };
 
   const handleSave = () => {
-    const screenCaptureSource = screenCapture
+    const screenCaptureSource = screenCapture;
     setObj(screenCapture);
-    console.log(screenCaptureSource.screenCapture)
+    console.log(screenCaptureSource.screenCapture);
     const downloadLink = document.createElement("a");
     const fileName = "react-screen-capture.png";
 
@@ -48,60 +87,93 @@ function App() {
     console.log(downloadLink);
     // downloadLink.click();
   };
-console.log(obj)
+  console.log(obj);
   return (
     <div>
-      <Modal open={modalOpen} onClose={onCloseModal} center>
+      {/* Raise ticket modal */}
+      <Modal open={modal2Open} onClose={onCloseModal2} style={{height:"80vh", width:"80vw"}}>
         <div>
           <div>
             {/* screenshot section */}
-            <div className="modal-header">
+            <div className="modal-content">
               <IoMdArrowBack />
-              <div className="modal-heading">Screenshot  Based Ticket</div>
-              <div className="modal-subtext">Please use button below to mask any PII information in the screenshot</div>
+              <div className="modal-heading">Screenshot Based Ticket</div>
+              <div className="modal-subtext">
+                Please use button below to mask any PII information in the
+                screenshot
+              </div>
             </div>
           </div>
-          <div>
-            {/* Form */}
-          </div>
+          <div>{/* Form */}</div>
         </div>
-        <center>
+        <div className="centered-div">
           <img src={obj.screenCapture} alt="react-screen-capture" />
-          <p>
-            {screenCapture && <button onClick={handleSave}>Download</button>}
-          </p>
-        </center>
+        </div>
       </Modal>
-    <ScreenCapture onEndCapture={handleScreenCapture} >
-      {({ onStartCapture }) => (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-          { showChatIcon && 
-          <div className="icon-div">
-            <div className="icon-box" onClick={showReportIssue}>
-              <IoChatboxEllipses />
+      {/* screenshot-modal */}
+      {/* <Modal open={modal1Open} onClose={onCloseModal1} center> */}
+      <div className="screen-capture">
+        {saveShow && <div className="modal">
+          <div className="modal-content">
+            <div className="centered-div">
+              <img src={obj.screenCapture} alt="react-screen-capture" />
             </div>
           </div>
-          }
-          {issueShow && <ReportIssue onCloseClick={hideReportIssue} onButtonClick={showCustomArea}/>}
-          {CustomAreaShow && <CustomArea onCloseClick={hideCustomArea} onButtonClick={onStartCapture}/>}
-          
-        </div>
-      )}
-    </ScreenCapture>
+        </div>}
+      </div>
+      {/* </Modal> */}
+      <ScreenCapture onEndCapture={handleScreenCapture}>
+        {({ onStartCapture }) => (
+          <div className="App">
+            <header className="App-header">
+              <img src={logo} className="App-logo" alt="logo" />
+              <p>
+                Edit <code>src/App.js</code> and save to reload.
+              </p>
+              <a
+                className="App-link"
+                href="https://reactjs.org"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Learn React
+              </a>
+            </header>
+            {showChatIcon && (
+              <div className="icon-div">
+                <div className="icon-box" onClick={showReportIssue}>
+                  <IoChatboxEllipses />
+                </div>
+              </div>
+            )}
+            <div className="screenShotMenus">
+              {issueShow && (
+                <ReportIssue
+                  onCloseClick={hideReportIssue}
+                  onButtonClick={showCustomArea}
+                />
+              )}
+              {CustomAreaShow && (
+                <CustomArea
+                  onCloseClick={hideCustomArea}
+                  onStartCapture={()=>{onStartCapture(); hideCustomArea();}}
+                />
+              )}
+              {saveShow && (
+                <Save
+                  onSaveClick={() => {
+                    onOpenModal2();
+                    hideSave();
+                  }
+                }
+                  onCloseClick={hideSave}
+                  onRefreshClick={()=>{onStartCapture(); hideSave();}}
+                />
+              )}
+            </div>
+          </div>
+        )}
+      </ScreenCapture>
     </div>
   );
 }
