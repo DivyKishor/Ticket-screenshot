@@ -134,7 +134,7 @@ code {
   margin-left: 10px;
 }
 
-.cancel-btn{
+.close-btn{
   margin-left: 10px;
   background-color: #8a0815;
   color: white;
@@ -185,4 +185,45 @@ code {
 
 .centered-div {
   text-align: center;
+}
+
+.raise-issue-ticket-div{
+  box-shadow: 0 0 4px grey;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  min-width: 1020px;
+  min-height: 500px;
+}
+
+.raise-issue-ticket-form{
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+}
+
+.react-responsive-modal-modal {
+  max-width: 1080px !important;
+}
+
+.form-group{
+  display: flex;
+  flex-direction: column;
+  padding:10px;
+}
+
+.submit-btn{
+  background-color: #4287f5;
+  padding: 5px;
+  width: 100px;
+  color: white;
+  border: 0px;
+  cursor: pointer;
+}
+
+.cancel-btn{
+  border: 0px;
+  background-color: white;
+  color: #4297f5;
+  cursor: pointer;
 }

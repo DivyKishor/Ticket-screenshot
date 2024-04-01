@@ -6,7 +6,7 @@ const CustomArea = ({onCloseClick, onStartCapture}) => {
     <div className="custom-area-div">
       <button className="btn" onClick={onStartCapture}>Custom Area</button>
       <button className="btn" onClick={()=>{}}>Full Screen</button>
-      <button className="cancel-btn"onClick={onCloseClick}><IoMdClose /></button>
+      <button className="close-btn"onClick={onCloseClick}><IoMdClose /></button>
     </div>
   )
 }

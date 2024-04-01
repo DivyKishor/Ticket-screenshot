@@ -9,6 +9,7 @@ import { Modal } from "react-responsive-modal";
 import ReportIssue from "./ReportIssue";
 import CustomArea from "./CustomArea";
 import Save from "./Save";
+import IssueForm from "./IssueForm";
 
 function App() {
   const [screenCapture, setScreenCapture] = useState("");
@@ -67,9 +68,7 @@ function App() {
   };
 
   const handleScreenCapture = (screenCapture) => {
-    console.log(saveShow, "saveShow");
     showSave();
-    console.log(saveShow, "after showSave");
     setScreenCapture({ screenCapture });
     setObj(screenCapture);
     onOpenModal1();
@@ -91,11 +90,11 @@ function App() {
   return (
     <div>
       {/* Raise ticket modal */}
-      <Modal open={modal2Open} onClose={onCloseModal2} style={{height:"80vh", width:"80vw"}}>
-        <div>
-          <div>
+      <Modal open={modal2Open} onClose={onCloseModal2}>
+        <div className="raise-issue-ticket-div">
+          <div className="canvas-content">
             {/* screenshot section */}
-            <div className="modal-content">
+            <div className="modal-header">
               <IoMdArrowBack />
               <div className="modal-heading">Screenshot Based Ticket</div>
               <div className="modal-subtext">
@@ -103,12 +102,15 @@ function App() {
                 screenshot
               </div>
             </div>
+            <div className="centered-div">
+              <img src={obj.screenCapture} alt="react-screen-capture" />
+            </div>
           </div>
-          <div>{/* Form */}</div>
+          <div className="raise-issue-ticket-form">
+            <IssueForm onCancelClick={onCloseModal2}/>
+          </div>
         </div>
-        <div className="centered-div">
-          <img src={obj.screenCapture} alt="react-screen-capture" />
-        </div>
+        
       </Modal>
       {/* screenshot-modal */}
       {/* <Modal open={modal1Open} onClose={onCloseModal1} center> */}

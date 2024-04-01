@@ -9,7 +9,7 @@ const Save = ({onSaveClick,onCloseClick, onRefreshClick}) => {
         <div className="save-div">
           <button className="save-btn btn" onClick={onSaveClick}><FaCheck />Save</button>
           <button className="btn" onClick={onRefreshClick}><IoIosRefresh /></button>
-          <button className="cancel-btn"onClick={onCloseClick}><IoMdClose /></button>
+          <button className="close-btn"onClick={onCloseClick}><IoMdClose /></button>
         </div>
       )
 }
