@@ -212,6 +212,10 @@ code {
   padding:10px;
 }
 
+.form-group>label{
+  margin-bottom: 10px;
+}
+
 .submit-btn{
   background-color: #4287f5;
   padding: 5px;
@@ -226,4 +230,8 @@ code {
   background-color: white;
   color: #4297f5;
   cursor: pointer;
+}
+
+.canvas-content{
+  background-color: lightgray;
 }

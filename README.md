@@ -1,3 +1,7 @@
+# Test this project
+
+This project is hosted with Netlify (https://660afc22b8978003492b8135--delicate-twilight-d03022.netlify.app/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

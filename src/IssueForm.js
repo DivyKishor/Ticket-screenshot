@@ -15,7 +15,7 @@ const IssueForm = ({ onCancelClick }) => {
 
         //console.log(issueType,"issueType");
         setIsSubmitting(true);
-        let x ={
+        let formVaraibles ={
             issueType,
             impact,
             title,
@@ -23,7 +23,7 @@ const IssueForm = ({ onCancelClick }) => {
             section,
             subSection
         }
-        alert(JSON.stringify(x));
+        alert(JSON.stringify(formVaraibles));
         alert("Ticket raised successfully.");
     }
 
